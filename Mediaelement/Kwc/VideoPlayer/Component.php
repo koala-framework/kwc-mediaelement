@@ -29,7 +29,7 @@ class Mediaelement_Kwc_VideoPlayer_Component extends Kwc_Abstract_Composite_Comp
             'enableAutosize' => true,
             'features' => array(
                 'playpause','progress','current','duration','tracks','volume','fullscreen'
-                ),
+            ),
             'alwaysShowControls' => false,
             'iPadUseNativeControls' => false,
             'iPhoneUseNativeControls' => false,
@@ -41,6 +41,11 @@ class Mediaelement_Kwc_VideoPlayer_Component extends Kwc_Abstract_Composite_Comp
             'pauseOtherPlayers' => true,
             'keyActions' => array(),
             'autoPlay' => false
+        );
+
+        $ret['ratios'] = array(
+            '4x3' => '4:3',
+            '16x9' => '16:9'
         );
         return $ret;
     }
