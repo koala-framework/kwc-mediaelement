@@ -60,25 +60,6 @@ class Mediaelement_Kwc_VideoPlayer_Component extends Kwc_Abstract_Composite_Comp
             );
         }
 
-        //webm
-        $url = $this->_getVideoUrl('webm');
-        if ($url) {
-            $ret['sources'][] = array(
-                'src' => $url,
-                'type' => 'video/webm',
-                'title' => 'webm',
-            );
-        }
-
-        //ogg
-        $url = $this->_getVideoUrl('ogg');
-        if ($url) {
-            $ret['sources'][] = array(
-                'src' => $url,
-                'type' => 'video/ogg',
-                'title' => 'ogg',
-            );
-        }
         $ret['config'] = $this->_getSetting('video');
         $dimensions = $this->getVideoDimensions();
         $ret['config']['videoWidth'] = $dimensions['width'];
@@ -148,15 +129,9 @@ class Mediaelement_Kwc_VideoPlayer_Component extends Kwc_Abstract_Composite_Comp
         $s->ignoreVisible(true);
         $component =Kwf_Component_Data_Root::getInstance()->getComponentByDbId($id, $s);
         $row = $component->getComponent()->getRow();
-        if ($type == 'webm') {
-            $uploadRow = $row->getParentRow('FileWebm');
-            $mimeType = 'video/webm';
-        } else if ($type == 'mp4') {
+        if ($type == 'mp4') {
             $uploadRow = $row->getParentRow('FileMp4');
             $mimeType = 'video/mp4';
-        } else if ($type == 'ogg') {
-            $uploadRow = $row->getParentRow('FileOgg');
-            $mimeType = 'video/ogg';
         }
         if (!$uploadRow) return null;
         return array(

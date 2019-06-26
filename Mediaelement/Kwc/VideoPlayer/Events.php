@@ -20,12 +20,6 @@ class Mediaelement_Kwc_VideoPlayer_Events extends Kwc_Abstract_Events
         if ($event->isDirty(array('mp4_kwf_upload_id'))) {
             $this->_fireMediaChanged($c, 'mp4');
         }
-        if ($event->isDirty(array('ogg_kwf_upload_id'))) {
-            $this->_fireMediaChanged($c, 'ogg');
-        }
-        if ($event->isDirty(array('webm_kwf_upload_id'))) {
-            $this->_fireMediaChanged($c, 'webm');
-        }
         //content changed
         foreach (Kwf_Component_Data_Root::getInstance()
             ->getComponentsByDbId($event->row->component_id) as $c) {

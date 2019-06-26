@@ -16,23 +16,11 @@ class Mediaelement_Kwc_VideoPlayer_Form extends Kwc_Abstract_Composite_Form
             ->setDirectory('AdvancedVideoPlayer')
             ->setAllowOnlyImages(false);
 
-        $fs->add(new Kwf_Form_Field_File('FileOgg', trlKwf('Ogg File')))
-            ->setDirectory('AdvancedVideoPlayer')
-            ->setAllowOnlyImages(false);
-
-        $fs->add(new Kwf_Form_Field_File('FileWebm', trlKwf('Webm file (optional)')))
-            ->setDirectory('AdvancedVideoPlayer')
-            ->setAllowOnlyImages(false);
-            
         $card = $cards->add();
         $card->setName('links');
         $card->setTitle(trlKwf('Links'));
         $fs = $card->add(new Kwf_Form_Container_FieldSet(trlKwf('Links')));
         $fs->add(new Kwf_Form_Field_UrlField('mp4_url', trlKwf('Mp4 link')))
-            ->setWidth(400);
-        $fs->add(new Kwf_Form_Field_UrlField('ogg_url', trlKwf('Ogg link')))
-            ->setWidth(400);
-        $fs->add(new Kwf_Form_Field_UrlField('webm_url', trlKwf('Webm link')))
             ->setWidth(400);
 
         $fs = $this->fields->add(new Kwf_Form_Container_FieldSet(trlKwf('Settings')))
