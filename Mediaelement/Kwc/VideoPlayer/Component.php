@@ -47,6 +47,8 @@ class Mediaelement_Kwc_VideoPlayer_Component extends Kwc_Abstract_Composite_Comp
             '4x3' => '4:3',
             '16x9' => '16:9'
         );
+        $ret['apiContent'] = 'Mediaelement_Kwc_VideoPlayer_ApiContent';
+        $ret['apiContentType'] = 'video';
         return $ret;
     }
 
@@ -143,6 +145,11 @@ class Mediaelement_Kwc_VideoPlayer_Component extends Kwc_Abstract_Composite_Comp
             'file'=>$uploadRow->getFileSource(),
             'mimeType' => $mimeType
         );
+    }
+
+    public function getVideoUrl($format = 'mp4')
+    {
+        return $this->_getVideoUrl($format);
     }
 
     protected function _getVideoUrl($format = 'mp4')
