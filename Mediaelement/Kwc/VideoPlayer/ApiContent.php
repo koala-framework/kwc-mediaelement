@@ -17,6 +17,7 @@ class Mediaelement_Kwc_VideoPlayer_ApiContent implements Kwf_Component_ApiConten
         $ret['autoPlay'] = !!$row->auto_play;
         $ret['loop'] = !!$row->loop;
         $ret['format'] = $row->format;
+        $ret['previewImage'] = $data->getChildComponent('-previewImage');
         return $ret;
     }
 }
