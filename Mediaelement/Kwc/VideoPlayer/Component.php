@@ -55,12 +55,11 @@ class Mediaelement_Kwc_VideoPlayer_Component extends Kwc_Abstract_Composite_Comp
     public function getTemplateVars(Kwf_Component_Renderer_Abstract $renderer)
     {
         $ret = parent::getTemplateVars($renderer);
-        $ret['sources'] = array();
 
         //mp4
-        $url = $this->_getVideoUrl('mp4');
+        $url = $this->_getVideoUrl();
         if ($url) {
-            $ret['sources'][] = array(
+            $ret['source'] = array(
                 'src' => $url,
                 'type' => 'video/mp4',
                 'title' => 'mp4',
@@ -147,19 +146,21 @@ class Mediaelement_Kwc_VideoPlayer_Component extends Kwc_Abstract_Composite_Comp
         );
     }
 
-    public function getVideoUrl($format = 'mp4')
+    public function getVideoUrl()
     {
-        return $this->_getVideoUrl($format);
+        return $this->_getVideoUrl();
     }
 
-    protected function _getVideoUrl($format = 'mp4')
+    protected function _getVideoUrl()
     {
         $row = $this->getRow();
         if ($row->source_type == 'links') {
-            return $row->{$format.'_url'};
+            return $row->{'mp4_url'};
         }
+        if (!$row->getParentRow('FileMp4')) return false;
+
         $ret = Kwf_Media::getUrl($this->getData()->componentClass,
-            $this->getData()->componentId, $format, 'video.'.$format);
+            $this->getData()->componentId, 'mp4', 'video.mp4');
         $ev = new Kwf_Component_Event_CreateMediaUrl($this->getData()->componentClass, $this->getData(), $ret);
         Kwf_Events_Dispatcher::fireEvent($ev);
         return $ev->url;
