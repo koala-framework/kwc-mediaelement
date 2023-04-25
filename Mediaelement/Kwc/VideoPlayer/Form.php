@@ -6,6 +6,8 @@ class Mediaelement_Kwc_VideoPlayer_Form extends Kwc_Abstract_Composite_Form
     public function __construct($name, $class)
     {
         parent::__construct($name, $class);
+        $ratios = Kwc_Abstract::getSetting($this->getClass(), 'ratios');
+
         $cards = $this->fields->add(new Kwf_Form_Container_Cards('source_type', trlKwf('Video Source Type')));
         $cards->getCombobox()->setAllowBlank(false);
         $card = $cards->add();
@@ -35,7 +37,7 @@ class Mediaelement_Kwc_VideoPlayer_Form extends Kwc_Abstract_Composite_Form
         $card = $cards->add(new Kwf_Form_Container_Card('contentWidth'))
             ->setTitle(trlKwf('Stretch video to maximum width'));
         $card->add(new Kwf_Form_Field_Select('format', trlKwf('Format')))
-            ->setValues(array('16x9' => trlKwfStatic('16:9'), '4x3' => trlKwfStatic('4:3')))
+            ->setValues($ratios)
             ->setDefaultValue('16x9')
             ->setAllowBlank(false);
 
